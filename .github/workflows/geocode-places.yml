@@ -1,0 +1,24 @@
+name: Geocode Little Detour parks
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/geocode_places.py'
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Resolve named parks through OpenStreetMap
+        run: python scripts/geocode_places.py
+      - name: Commit verified place-center pins
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lib/starter-places.ts
+          git diff --cached --quiet || (git commit -m "Add matched OSM coordinates to Little Detour map" && git push)
