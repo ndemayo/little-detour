@@ -1,5 +1,5 @@
 import {starterPlaces} from "./starter-places";
-export type Place = { id:string; name:string; slug:string; category:string; description:string|null; municipality:string|null; county:string|null; street_address?:string|null; source_url?:string|null; latitude:number|null; longitude:number|null; amenities:string[]; verification_status:string; };
+export type Place = { street_address?:string|null; source_url?:string|null; id:string; name:string; slug:string; category:string; description:string|null; municipality:string|null; county:string|null; latitude:number|null; longitude:number|null; amenities:string[]; verification_status:string; };
 export async function getPublishedPlaces():Promise<Place[]> {
  const url=process.env.NEXT_PUBLIC_SUPABASE_URL;
  const key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
