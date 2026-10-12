@@ -12,7 +12,7 @@ export default function AdventureMap({places}:{places:Place[]}){
   let markers:import("maplibre-gl").Marker[]=[];
   import("maplibre-gl").then(({default:maplibregl})=>{
    if(disposed||!el.current)return;
-   const m=new maplibregl.Map({container:el.current,center:[-75.36,39.92],zoom:10,style:{version:8,sources:{carto:{type:"raster",tiles:["https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png","https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"],tileSize:256,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>'}},layers:[{id:"basemap",type:"raster",source:"carto"}]}});
+   const m=new maplibregl.Map({container:el.current,center:[-75.36,39.92],zoom:10,style:{version:8,sources:{carto:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}},layers:[{id:"basemap",type:"raster",source:"carto"}]}});
    map.current=m;
    m.addControl(new maplibregl.NavigationControl({showCompass:false}),"top-right");
    m.on("load",()=>{if(!disposed)setLoaded(true)});
