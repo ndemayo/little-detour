@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'scripts/geocode_places.py'
+      - '.github/workflows/geocode-places.yml'
 jobs:
   geocode:
     runs-on: ubuntu-latest
